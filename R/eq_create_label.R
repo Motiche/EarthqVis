@@ -1,5 +1,5 @@
 #' eq_create_label
-#' Cleans data
+#' make label for popup on the map
 #'
 #' @param data A dataset
 #' @return a list of labels consisting of Location, Number of Deaths and Magnitude for eache earthquake

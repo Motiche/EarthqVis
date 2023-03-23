@@ -1,0 +1,205 @@
+---
+title: "EarthqVis"
+author: "Mot Hakimi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+fig_width: 12
+fig_height: 4 
+vignette: >
+  %\VignetteIndexEntry{EarthqVis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(dplyr)
+library(EarthqVis)
+library(ggplot2)
+```
+This package is designed to visualize earthquake data.
+
+
+## eq_location_clean
+
+**Description**
+*eq_location_clean* Make Location name nicer
+
+**Usage**
+eq_location_clean(data)
+
+**Arguments**
+*data*: A dataset
+
+**Value**
+cleaned dataset
+
+**Examples**
+```{r, results='hide'}
+readr::read_delim(raw_data,
+                  delim = "\t") %>%
+                      eq_location_clean() 
+```
+
+## eq_clean_data
+**Description**
+*eq_clean_data* Curate data
+
+**Usage**
+eq_clean_data(data)
+
+**Arguments**
+*data*: A dataset
+
+**Value**
+curated dataset
+
+**Examples**
+```{r, results='hide'}
+readr::read_delim(raw_data,
+                  delim = "\t") %>%
+                      eq_location_clean() 
+```
+
+## eq_create_label
+**Description**
+*eq_create_label* make label for popup on the map
+
+**Usage**
+eq_create_label(data)
+
+**Arguments**
+*data*: A dataset
+
+**Value**
+a list of labels consisting of Location, Number of Deaths and Magnitude for each earthquake
+
+**Examples**
+```{r, results='hide'}
+readr::read_delim(raw_data,
+                  delim = "\t") %>%
+       eq_location_clean()%>%
+       dplyr::mutate(popup_text = eq_create_label(.)) 
+```
+
+## eq_map
+**Description**
+*eq_map* Show Points on map
+
+**Usage**
+eq_map(data, annot_col)
+
+**Arguments**
+*data*: A dataset
+
+*annot_col*: selected column for showing in pop-up
+
+**Value**
+show earthquake points on maps
+
+**References**
+https://rstudio.github.io/leaflet/markers.html
+
+**Examples**
+```{r, fig.height = 3, fig.width = 7, fig.align = "center", warning=FALSE}
+readr::read_delim(raw_data,
+                  delim = "\t") %>%
+       eq_clean_data() %>%
+    dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
+    dplyr::mutate(popup_text = eq_create_label(.)) %>% 
+    eq_map(annot_col = "popup_text")
+```
+
+## geom_timeline
+**Description**
+*geom_timeline* make a timeline of earthquakes for countries
+
+**Usage**
+geom_timeline(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = T,
+  inherit.aes = TRUE,
+  ...
+)
+
+**Examples**
+```{r, fig.height = 3, fig.width = 7, fig.align = "center" , warning=FALSE}
+ex_data <- readr::read_delim(raw_data,
+                  delim = "\t") %>%
+                      eq_clean_data() %>%
+                      filter(YEAR>2010) %>%
+filter(COUNTRY %in% c("IRAN","CHINA"))
+ggplot2::ggplot(data = ex_data, aes(x = ex_data$DATE ,
+                          y = ex_data$COUNTRY,
+                          size = ex_data$EQ_PRIMARY,
+                          alpha = ex_data$DEATHS)) +
+ geom_timeline()+
+ theme_light()+
+ labs(size = "Strength (Richter)",
+      alpha = "Number of deaths")+
+ xlab("Time") + ylab("")
+```
+
+## geom_timeline_label
+
+**Description**
+*geom_timeline_label* make labels for a timeline of earthquakes for countries
+
+**Usage**
+geom_timeline_label(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = F,
+  inherit.aes = TRUE,
+  ...
+)
+
+**Examples**
+```{r, fig.height = 3, fig.width = 7, fig.align = "center", warning=FALSE}
+ex_data <- readr::read_delim(raw_data,
+                  delim = "\t") %>%
+                      eq_clean_data() %>%
+                      filter(YEAR>2010) %>%
+filter(COUNTRY %in% c("IRAN","CHINA"))
+ggplot2::ggplot(data = ex_data, aes(x = ex_data$DATE ,
+                          y = ex_data$COUNTRY,
+                          size = ex_data$EQ_PRIMARY,
+                          alpha = ex_data$DEATHS,
+                          label = ex_data$LOCATION_NAME)) +
+ geom_timeline_label(n_max = 20)+
+ geom_timeline()+
+ theme_light()+
+ labs(size = "Strength (Richter)",
+      alpha = "Number of deaths")+
+ xlab("Time") + ylab("")
+```
+
+## ggproto_timeline
+**Description**
+*ggproto_timeline* build ggproto object for geom_timeline
+
+**Usage**
+ggproto_timeline
+
+**Format**
+An object of class ggproto_timeline (inherits from Geom, ggproto, gg) of length 6.
+
+## ggproto_timeline_label
+**Description**
+*ggproto_timeline_label* build ggproto object for geom_timeline_label
+
+**Usage**
+ggproto_timeline_label
+
+**Format**
+An object of class ggproto_timeline_label (inherits from Geom, ggproto, gg) of length 6.

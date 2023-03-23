@@ -1,5 +1,5 @@
-#' eq_create_label
-#' Cleans data
+#' eq_map
+#' Show Points on map
 #'
 #' @param data A dataset
 #' @param annot_col selected column for showing in pop-up
