@@ -1,7 +1,23 @@
-EarthqVis
-================
+---
+title: "EarthqVis"
+output:
+  github_document:
+    fig_width: 5
+    fig_height: 5
+    dev: jpeg
+always_allow_html: true
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # EarthqVis
 
@@ -12,8 +28,7 @@ The goal of EarthqVis is to visualize earthquke data.
 
 ## Installation
 
-You can install the development version of EarthqVis from this Github
-Repo.
+You can install the development version of EarthqVis from this Github Repo.
 
 ``` r
 devtools::install_github("Motiche/EarthqVis")
@@ -23,17 +38,9 @@ devtools::install_github("Motiche/EarthqVis")
 
 This is an example of drawing a timeline:
 
-``` r
+```{r examplePlot}
 library(EarthqVis)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(ggplot2)
 ex_data <- readr::read_delim(raw_data, show_col_types = F) %>% 
   eq_clean_data () %>% 
@@ -52,11 +59,14 @@ plot <- ggplot(data = ex_data, aes(x = ex_data$DATE ,
   labs(size = "Strength (Richter)",
        alpha = "Number of deaths")+
   xlab("Time") + ylab("")
+
+
 ```
+
 
 This is an example of showing on map:
 
-``` r
+```{r exampleMap}
 library(EarthqVis)
 library(dplyr)
 library(ggplot2)
@@ -69,4 +79,6 @@ map <- ex_data %>%
   eq_clean_data() %>%
      dplyr::mutate(popup_text = eq_create_label(.)) %>% 
      eq_map(annot_col = "popup_text")
+
+
 ```
