@@ -1,0 +1,29 @@
+raw_data <- readtext::readtext("C:/Users/Motiche/Downloads/signif.txt")
+raw_data<- raw_data$text
+usethis::use_data(raw_data, internal = FALSE, overwrite = T)
+library(dplyr)
+# https://debruine.github.io/tutorials/your-first-r-package-with-unit-tests.html
+readr::read_delim(raw_data, delim = "\t") %>%  eq_location_clean()
+usethis::use_mit_license()
+setwd("C:/Users/Motiche/Desktop/R Capstone/EarthqVis/")
+usethis::use_readme_rmd()
+devtools::build_readme()
+#usethis::use_test("eq_create_label")
+#usethis::use_test("eq_clean_data")
+pkgdown::build_site()
+roxygen2::roxygenise()
+devtools::check()
+devtools::document()
+devtools::build()
+setwd("..")
+devtools::install("EarthqVis")
+#remove.packages("EarthqVis")
+library(testthat)
+library(EarthqVis)
+test_check("EarthqVis")
+test_file("C:/Users/Motiche/Desktop/R Capstone/EarthqVis/tests/testthat/test-eq_clean_data.R")
+test_file("C:/Users/Motiche/Desktop/R Capstone/EarthqVis/tests/testthat/test-eq_create_label.R")
+
+devtools::uninstall("EarthqVis")
+
+

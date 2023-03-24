@@ -1,0 +1,6 @@
+"0","raw_data %>% 
+  eq_clean_data ()
+"
+"2","Error in UseMethod(""mutate"") : 
+  no applicable method for 'mutate' applied to an object of class ""character""
+"

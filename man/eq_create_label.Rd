@@ -3,7 +3,7 @@
 \name{eq_create_label}
 \alias{eq_create_label}
 \title{eq_create_label
-Cleans data}
+make label for popup on the map}
 \usage{
 eq_create_label(data)
 }
@@ -15,7 +15,7 @@ a list of labels consisting of Location, Number of Deaths and Magnitude for each
 }
 \description{
 eq_create_label
-Cleans data
+make label for popup on the map
 }
 \examples{
 \dontrun{

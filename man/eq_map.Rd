@@ -2,8 +2,8 @@
 % Please edit documentation in R/eq_map.R
 \name{eq_map}
 \alias{eq_map}
-\title{eq_create_label
-Cleans data}
+\title{eq_map
+Show Points on map}
 \usage{
 eq_map(data, annot_col)
 }
@@ -16,8 +16,8 @@ eq_map(data, annot_col)
 show earthquake points on maps
 }
 \description{
-eq_create_label
-Cleans data
+eq_map
+Show Points on map
 }
 \examples{
 \dontrun{

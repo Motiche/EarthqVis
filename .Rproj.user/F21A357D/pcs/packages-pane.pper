@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "C:/Users/Motiche/AppData/Local/R/cache/R/renv/library/EarthqVis-bb7935c4/R-4.1/x86_64-w64-mingw32",
+        "installDependencies": true
+    }
+}
