@@ -1,3 +1,6 @@
+utils::globalVariables(c("DEATHS","YEAR", "MONTH", "DAY", "EQ_PRIMARY", 
+                         "LATITUDE", "LONGITUDE"))
+
 #' eq_clean_data
 #' Curate data
 #'
