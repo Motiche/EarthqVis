@@ -6,6 +6,7 @@ EarthqVis
 
 <!-- badges: start -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Motiche/EarthqVis?branch=main&svg=true)](https://ci.appveyor.com/project/Motiche/EarthqVis)
+[![R-CMD-check](https://github.com/Motiche/EarthqVis/workflows/R-CMD-check/badge.svg)](https://github.com/Motiche/EarthqVis/actions)
 <!-- badges: end -->
 
 The goal of EarthqVis is to visualize earthquke data. the main job of the functions are:

@@ -4,6 +4,7 @@
 #' @param data A dataset
 #' @return a list of labels consisting of Location, Number of Deaths and Magnitude for eache earthquake
 #' @importFrom stringr str_glue
+#' @import readr
 #' @examples
 #'\dontrun{
 #' readr::read_delim(data,
