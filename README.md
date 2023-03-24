@@ -3,7 +3,6 @@ EarthqVis
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EarthqVis
 
 <!-- badges: start -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Motiche/EarthqVis?branch=main&svg=true)](https://ci.appveyor.com/project/Motiche/EarthqVis)
