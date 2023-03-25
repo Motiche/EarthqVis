@@ -10,7 +10,7 @@
 #' @references https://rstudio.github.io/leaflet/markers.html
 #' @examples
 #'\dontrun{
-#' readr::read_delim(data,
+#' readr::read_delim(raw_data,
 #'                   delim = "\t") %>%
 #'        eq_clean_data() %>%
 #'     dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%

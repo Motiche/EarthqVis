@@ -7,7 +7,7 @@
 #' @import readr
 #' @examples
 #'\dontrun{
-#' readr::read_delim(data,
+#' readr::read_delim(raw_data,
 #'                   delim = "\t") %>%
 #'        eq_location_clean()%>%
 #'        dplyr::mutate(popup_text = eq_create_label(.))
